@@ -1,0 +1,31 @@
+.auth-form__input {
+    min-width: 358px;
+    padding: 0;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: transparent;
+    outline: none;
+    border: 2px solid rgba(204, 204, 204, 1);
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    padding-bottom: 13px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 122%;
+    color: rgba(255, 255, 255, 1);
+  }
+
+  .auth-form__input:focus {
+    background-color: transparent;
+  }
+  
+  @media screen and (max-width: 550px) {
+    .auth-form__input {
+      min-width: 74vw;  
+    }
+  }

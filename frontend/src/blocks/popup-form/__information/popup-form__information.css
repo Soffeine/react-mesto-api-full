@@ -1,0 +1,29 @@
+.popup-form__information {
+  min-width: 358px;
+  display: flex;
+  flex-direction: column;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  outline: none;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  padding-bottom: 13px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 122%;
+}
+
+.popup-form__information:last-child {
+  margin-bottom: 0;
+}
+
+
+@media screen and (max-width: 550px) {
+  .popup-form__information {
+    min-width: 74vw;  
+  }
+}

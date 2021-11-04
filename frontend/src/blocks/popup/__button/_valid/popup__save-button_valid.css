@@ -1,0 +1,17 @@
+.popup__button_valid {
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  opacity: 1;
+}
+    
+.popup__button_valid:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 550px) {
+    .popup__button_valid {
+      min-width: 74vw;
+      font-size: 14px;
+    }
+  }

@@ -1,0 +1,13 @@
+.place__image {
+  width: 100%;
+  min-height: 282px;
+  max-height: 282px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 910px) {
+  .place__image {
+    max-width: 100%;
+  }
+}

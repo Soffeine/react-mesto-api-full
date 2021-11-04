@@ -1,0 +1,25 @@
+.profile__image {
+  max-width: 13%;
+  max-height: 120px;
+  border-radius: 50%;
+  position: relative;
+}
+  
+.profile__image:hover {
+  background: rgba(0, 0, 0, .8);
+  opacity: .8;
+}
+
+  
+@media screen and (max-width:900px) {
+  .profile__image {
+    max-width: 12%;
+  }
+}
+
+@media screen and (max-width:900px) {
+  .profile__image {
+    max-width: 37%;
+    max-height: 37%;
+  }
+}
