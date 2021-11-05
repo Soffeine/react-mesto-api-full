@@ -44,5 +44,4 @@ export const getContent = (jwt) => {
         credentials: 'include',
     })
         .then(getResponseData)
-        .then(data => data)
 }

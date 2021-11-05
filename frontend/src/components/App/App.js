@@ -118,13 +118,15 @@ function App() {
 
   //получения данных профиля и данных карточки с сервера
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getPlaceInfo()])
+    if(loggedIn) {
+      Promise.all([api.getUserInfo(), api.getPlaceInfo()])
       .then(([userRes, cardRes]) => {
           setCurrentUser(userRes);
           setCards(cardRes);
       })
       .catch(err => console.log(`Упс, ошибочка ${err}`));
-  }, [])
+    }
+  }, [loggedIn])
 
 
   //работа с карточками
