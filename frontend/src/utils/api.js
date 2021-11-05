@@ -103,7 +103,6 @@ export class Api {
 const api = new Api({
     url: 'https://api.mesto.soffeine.nomoredomains.rocks',
     headers: {
-      authorization: "7f564866-b8ba-4557-8c91-b7d4f8327f3b",
       "Content-Type": "application/json"
     },
     credentials: 'include',

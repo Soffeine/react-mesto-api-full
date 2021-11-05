@@ -44,7 +44,7 @@ function App() {
     auth.register(password, email)
       .then(() => {
           handleSubmitMessage(registerSuccessMessage);
-          history.push('/signin')
+          history.push('/signin');
       })
       .catch((err) => {
         handleSubmitMessage(registerErrorMessage);
@@ -97,7 +97,7 @@ function App() {
 
   const mestoAuth = (jwt) => {
     return auth.getContent(jwt)
-    .then(({data}) => {
+    .then(({ data }) => { 
         setLoggedIn(true);
         setEmail(data.email);
     })

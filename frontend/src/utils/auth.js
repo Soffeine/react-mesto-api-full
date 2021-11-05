@@ -14,10 +14,6 @@ export const register = (password, email) => {
         body: JSON.stringify({ password, email })
     })
         .then(getResponseData)
-        .then(({data}) => {
-            console.log(data)
-            localStorage.setItem('email', data.email);
-        });
 };
 
 
@@ -32,6 +28,7 @@ export const authorize = (password, email) => {
     })
         .then(getResponseData)
         .then((data) => {
+            console.log(data);
             localStorage.setItem('jwt', data.token);
         })
 
