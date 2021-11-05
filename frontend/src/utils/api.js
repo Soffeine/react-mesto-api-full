@@ -18,7 +18,8 @@ export class Api {
     getUserInfo() {
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
-            headers: this._headers
+            headers: this._headers,
+            credentials: 'include',
         })
             .then(this._getResponseData)
     }
@@ -28,7 +29,8 @@ export class Api {
     getPlaceInfo() {
         return fetch(`${this._url}/cards`, {
             method: 'GET',
-            headers: this._headers
+            headers: this._headers,
+            credentials: 'include',
         })
             .then(this._getResponseData)
     }
@@ -39,6 +41,7 @@ export class Api {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
+            credentials: 'include',
             body: JSON.stringify({
                 name: data.name,
                 about: data.about
@@ -53,6 +56,7 @@ export class Api {
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
+            credentials: 'include',
             body: JSON.stringify({
                 avatar: data.avatar
             })
@@ -65,6 +69,7 @@ export class Api {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
             headers: this._headers,
+            credentials: 'include',
             body: JSON.stringify({
                 name: item.name,
                 link: item.link
@@ -78,6 +83,7 @@ export class Api {
         return fetch(`${this._url}/cards/${_id}`, {
             method: 'DELETE',
             headers: this._headers,
+            credentials: 'include',
         })
             .then(this._getResponseData)
     }
@@ -86,7 +92,8 @@ export class Api {
     changeLikeStatus(_id, isLiked) {
         return fetch(`${this._url}/cards/likes/${_id}`, {
             method: isLiked ? 'PUT' : 'DELETE',
-            headers: this._headers
+            headers: this._headers,
+            credentials: 'include',
         })
             .then(this._getResponseData)
     }
@@ -94,11 +101,12 @@ export class Api {
 }
 
 const api = new Api({
-    url: 'http://api.mesto.soffeine.nomoredomains.rocks',
+    url: 'https://api.mesto.soffeine.nomoredomains.rocks',
     headers: {
       authorization: "7f564866-b8ba-4557-8c91-b7d4f8327f3b",
       "Content-Type": "application/json"
-    }
+    },
+    credentials: 'include',
   });
 
   export default api;

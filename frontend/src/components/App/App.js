@@ -44,7 +44,7 @@ function App() {
     auth.register(password, email)
       .then(() => {
           handleSubmitMessage(registerSuccessMessage);
-          history.push('/sign-in')
+          history.push('/signin')
       })
       .catch((err) => {
         handleSubmitMessage(registerErrorMessage);
@@ -216,11 +216,11 @@ function App() {
             userEmail={email}
             onSignOut={handleSignOut}/>
 
-          <Route path='/sign-up'>
+          <Route path='/signup'>
             <Register onRegister={onRegister} />
           </Route>
 
-          <Route path='/sign-in'>
+          <Route path='/signin'>
             <Login onLogin={onLogin} />
           </Route>
 

@@ -22,7 +22,7 @@ function Register({ onRegister }) {
 
     return (
         <>
-            <Header link='/sign-in'
+            <Header link='/signin'
             linkName='Войти'
             email=''/>
             <AuthForm email={ email }
@@ -32,7 +32,7 @@ function Register({ onRegister }) {
             onChangeEmail={ handleChangeEmail }
             onChangePassword={ handleChangePassword }
             onSubmit={ handleSubmit }>
-                <p className="auth-form__signin">Уже зарегестрированы? <Link to="/sign-in" className="auth-form__signin_link">Войти</Link></p>
+                <p className="auth-form__signin">Уже зарегестрированы? <Link to="/signin" className="auth-form__signin_link">Войти</Link></p>
             </AuthForm>
         </>
     )

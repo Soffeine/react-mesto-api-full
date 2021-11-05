@@ -9,7 +9,7 @@ function Main({onEditProfileClick, onAddPlaceClick, onAvatarClick, onCardClick, 
 
     return (
         <main>
-            <Header link='/sign-in'
+            <Header link='/signin'
             linkName='Выйти'
             email={userEmail}
             onSignOut={onSignOut} />

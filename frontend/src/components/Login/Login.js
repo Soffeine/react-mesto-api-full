@@ -22,7 +22,7 @@ function Login({ onLogin }) {
 
   return (
     <>
-      <Header link='/sign-up'
+      <Header link='/signup'
         linkName='Регистрация'
         email='' />
       <AuthForm password={password}

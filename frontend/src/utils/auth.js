@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.mesto.soffeine.nomoredomains.rocks';
+export const BASE_URL = 'https://api.mesto.soffeine.nomoredomains.rocks';
 
 const getResponseData = (res) => {
     return res.ok ? res.json() : Promise.reject(res.status);
@@ -10,6 +10,7 @@ export const register = (password, email) => {
         headers: {
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({ password, email })
     })
         .then(getResponseData)
@@ -26,6 +27,7 @@ export const authorize = (password, email) => {
         headers: {
             "Content-Type": "application/json"
         },
+        credentials: 'include',
         body: JSON.stringify({ password, email })
     })
         .then(getResponseData)
@@ -41,7 +43,8 @@ export const getContent = (jwt) => {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${jwt}`
-        }
+        },
+        credentials: 'include',
     })
         .then(getResponseData)
         .then(data => data)

@@ -1,6 +1,19 @@
 const express = require('express');
 
 const PORT = 3000;
+const cors = require('cors');
+
+const allowedCors = [
+  'http://localhost:3000',
+  'https://localhost:3000',
+  'https://mesto.soffeine.nomoredomains.xyz',
+  'http://mesto.soffeine.nomoredomains.xyz/',
+  'http://api.mesto/soffeine.nomoredomains.rocks',
+  'https://api.mesto/soffeine.nomoredomains.rocks',
+];
+
+const allowedMethods = ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'];
+
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -14,17 +27,22 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const NotFoundError = require('./errors/not-found-error');
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {
-  useNewUrlParser: true,
-});
+app.use(cors({
+  credentials: true,
+  origin: allowedCors,
+  methods: allowedMethods,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.post('/sign-up', signupValidation, createUser);
-app.post('/sign-in', loginValidation, login);
+app.post('/signup', signupValidation, createUser);
+app.post('/signin', loginValidation, login);
 
 app.use(auth);
 
@@ -47,6 +65,10 @@ app.use((err, req, res, next) => {
       : message,
   });
   next();
+});
+
+mongoose.connect('mongodb://localhost:27017/mestodb', {
+  useNewUrlParser: true,
 });
 
 app.listen(PORT, () => {
