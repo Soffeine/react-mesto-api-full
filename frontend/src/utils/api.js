@@ -107,7 +107,7 @@ export class Api {
 
     // постановка лайка
     changeLikeStatus(_id, isLiked, token) {
-        return fetch(`${this._url}/cards/likes/${_id}`, {
+        return fetch(`${this._url}/cards/${_id}/likes`, {
             method: isLiked ? 'PUT' : 'DELETE',
             headers: {
                 authorization: `Bearer ${token}`,
