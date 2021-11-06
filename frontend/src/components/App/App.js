@@ -29,7 +29,6 @@ function App() {
   const history = useHistory();
   const [isSuccess, setIsSuccess] = useState(false);
   const [successStatus, setSuccessStatus] = useState({});
-  const [email, setEmail] = useState('')
   const registerErrorMessage = {
     image: errorImage,
     text: 'Что-то пошло не так! Попробуйте ещё раз.'
@@ -99,7 +98,6 @@ function App() {
     return auth.getContent(jwt)
     .then(({ data }) => { 
         setLoggedIn(true);
-        setEmail(data.email);
     })
     .catch((err) => {console.log(err)})
   };
@@ -221,7 +219,7 @@ function App() {
             cards={cards}
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete} 
-            userEmail={email}
+            userEmail={currentUser.email}
             onSignOut={handleSignOut}/>
 
           <Route path='/signup'>
