@@ -1,7 +1,6 @@
 export class Api {
     constructor(config) {
         this._url = config.url;
-        this._headers = config.headers;
     }
 
     // обработка ответа от сервера
@@ -15,10 +14,13 @@ export class Api {
 
 
     // Загрузить информацию о пользователе с сервера
-    getUserInfo() {
+    getUserInfo(token) {
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
             credentials: 'include',
         })
             .then(this._getResponseData)
@@ -26,10 +28,13 @@ export class Api {
 
 
     // Загрузить карточки с сервера
-    getPlaceInfo() {
+    getPlaceInfo(token) {
         return fetch(`${this._url}/cards`, {
             method: 'GET',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
             credentials: 'include',
         })
             .then(this._getResponseData)
@@ -37,10 +42,13 @@ export class Api {
 
 
     // Редактирование профиля 
-    editProfileInfo(data) {
+    editProfileInfo(data, token) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
             credentials: 'include',
             body: JSON.stringify({
                 name: data.name,
@@ -52,10 +60,13 @@ export class Api {
 
 
     // Редактирование аватара
-    editAvatar(data) {
+    editAvatar(data, token) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
             credentials: 'include',
             body: JSON.stringify({
                 avatar: data.avatar
@@ -65,10 +76,13 @@ export class Api {
     }
 
     // Добавление новой карточки
-    addNewCard(item) {
+    addNewCard(item, token) {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
             credentials: 'include',
             body: JSON.stringify({
                 name: item.name,
@@ -78,34 +92,36 @@ export class Api {
             .then(this._getResponseData)
     }
 
-     // Удалние карточки
-    deleteCard(_id) {
+    // Удалние карточки
+    deleteCard(_id, token) {
         return fetch(`${this._url}/cards/${_id}`, {
             method: 'DELETE',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
             credentials: 'include',
         })
             .then(this._getResponseData)
     }
 
     // постановка лайка
-    changeLikeStatus(_id, isLiked) {
+    changeLikeStatus(_id, isLiked, token) {
         return fetch(`${this._url}/cards/likes/${_id}`, {
             method: isLiked ? 'PUT' : 'DELETE',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
             credentials: 'include',
         })
-            .then(this._getResponseData)
+            .then(this._getResponseData);
     }
 
 }
 
 const api = new Api({
     url: 'https://api.mesto.soffeine.nomoredomains.rocks',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: 'include',
-  });
+});
 
-  export default api;
+export default api;

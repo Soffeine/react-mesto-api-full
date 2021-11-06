@@ -119,7 +119,8 @@ function App() {
   //получения данных профиля и данных карточки с сервера
   useEffect(() => {
     if(loggedIn) {
-      Promise.all([api.getUserInfo(), api.getPlaceInfo()])
+      const token = localStorage.getItem('jwt');
+      Promise.all([api.getUserInfo(token), api.getPlaceInfo(token)])
       .then(([userRes, cardRes]) => {
           setCurrentUser(userRes);
           setCards(cardRes);
@@ -132,8 +133,9 @@ function App() {
   //работа с карточками
   //лайк карточки
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-    api.changeLikeStatus(card._id, !isLiked)
+    const isLiked = card.likes.some(i => i === currentUser._id);
+    const token = localStorage.getItem('jwt');
+    api.changeLikeStatus(card._id, !isLiked, token)
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
@@ -144,7 +146,8 @@ function App() {
 
   //удаление карточки
   function handleCardDelete(card) {
-    api.deleteCard(card._id)
+    const token = localStorage.getItem('jwt');
+    api.deleteCard(card._id, token)
       .then(() => {
         setCards(() => cards.filter((c) => c._id !== card._id))
       })
@@ -166,7 +169,8 @@ function App() {
 
   //добавление новой карточки
   function handleAddPlaceSubmit(newCard) {
-    api.addNewCard(newCard)
+    const token = localStorage.getItem('jwt');
+    api.addNewCard(newCard, token)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -178,7 +182,8 @@ function App() {
 
   //функция редактирования профиля
   function handleUpdateUser(data) {
-    api.editProfileInfo(data)
+    const token = localStorage.getItem('jwt');
+    api.editProfileInfo(data, token)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -190,7 +195,8 @@ function App() {
 
   //функция изменения аватара
   function handleUpdateAvatar(data) {
-    api.editAvatar(data)
+    const token = localStorage.getItem('jwt');
+    api.editAvatar(data, token)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
